@@ -1,0 +1,341 @@
+/*  */
+html {
+    background-color: #333;
+}
+
+/*  */
+body { 
+	margin: 0;
+	font-family : Arial, sans-serif;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+
+/*  */
+header {
+	padding-bottom: 15px;
+}
+
+/* Design de la barre de navigation */
+#navbar {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+}
+  
+/* Design du texte dans la barre de navigation */
+#navbar a {
+	float: left;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 0px;
+	text-decoration: none;
+}
+
+/* Design du texte dans la barre de navigation quand on passe la souris dessus */
+#navbar a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+/* Design du texte */
+b {
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	margin-bottom: 8px;
+	font-size: 16px;
+	font-family : Arial, sans-serif;
+}
+
+/* Design du texte */
+a {
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	margin-bottom: 8px;
+	font-size: 16px;
+	font-family : Arial, sans-serif;
+}
+
+/* Design de la barre de navigation en mode actif */
+.active {
+	background-color: #4CAF50;
+}
+
+/* Design des boutons */
+.open-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: default;
+  font-family : Arial, sans-serif;
+  font-size: 16px;
+  padding: 15px;
+}
+
+/* Quand on passe sur le bouton */
+.open-button:hover {
+	background-color: transparent;
+	color: black;
+}
+
+/* Filtre pour assombrir le background */
+.content {
+    background-attachment: fixed;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.4);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* Design de la fenetre de dialogue pour le menu */
+#home {
+	display: none;
+	position: fixed;
+	background-image: url("../../images/angers.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	width: 100%;
+	top: 3rem;
+	bottom: 3rem;
+	z-index: 9;
+	-webkit-transition: 3s;
+	-moz-transition: 3s;
+	-ms-transition: 3s;
+	-o-transition: 3s;
+	transition: 3s;
+}
+
+/* Design du titre dans le menu */
+#home h1 {
+	color: white;
+	font-family : Arial, sans-serif;
+	font-size: 30px;
+	text-align: center;
+}
+
+/* Design du sous-titre dans le menu */
+#home h2 {
+	color: white;
+	font-family : Arial, sans-serif;
+	font-size: 16px;
+	text-align: center;
+}
+
+/* Design de la fenetre de dialogue pour le formulaire de contact */
+.form-popup-contact {
+  display: none;
+  position: fixed;
+  top: 3rem;
+  bottom: 3rem;
+  left: -1px;
+  border: 3px solid #f1f1f1;
+  background-color: white;
+  z-index: 9;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+
+/* Design de la fenetre de dialogue pour le login */
+.form-popup-login {
+	display: none;
+	position: fixed;
+	top: 3rem;
+	bottom: 3rem;
+	right: -1px;
+	border: 3px solid #f1f1f1;
+	background-color: white;
+	z-index: 9;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+/* Design de la fenetre de dialogue pour le l'enregistrement de l'utilisateur */
+.form-popup-signup {
+	display: block;
+	position: fixed;
+	top: 3rem;
+	bottom: 3rem;
+	border: 3px solid #f1f1f1;
+	background-color: white;
+	z-index: 9;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+#signup-p1 {
+	right: -325px;
+}
+
+#signup-p2 {
+	right: -325px;
+}	
+
+#signup-p3 {
+	right: -325px;
+}
+
+#signup-p4 {
+	right: -325px;
+}
+
+#signup-p5 {
+	right: -325px;
+}
+
+#signup-p6 {
+	right: -325px;
+}
+
+/*  */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Style des cases a remplir par défaut */
+.form-container input {
+  width: 100%;
+  max-width: 270px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  font-family : Arial, sans-serif;
+  font-size: 16px;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+
+/* Style de la case "Message" */
+.form-container textarea {
+	width: 100%;
+	max-width: 270px;
+	padding: 15px;
+	height: 140px;
+	margin: 5px 0 22px 0;
+	border: none;
+	background: #f1f1f1;
+	font-family : Arial, sans-serif;
+	font-size: 16px;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+.container {
+	max-width: 300px;
+	padding: 10px;
+	background-color: white;
+}
+
+.form-container input, .form-container textarea {
+	color: yellow;
+}
+
+.form-container input:invalid, .form-container textarea:invalid {
+	color: red;
+}
+
+.form-container input:valid, .form-container textarea:valid  {
+	color: black;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: darkgray;
+	opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: darkgray;
+}
+
+/* Style des cases a remplir par défaut en mode focus */
+.form-container input:focus, .form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Bouton Submit/Login */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.size {
+	margin-right: -10px;
+	margin-left: -10px;
+}
+
+/* Bouton Close */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Bouton Retour */
+.form-container .return {
+	background-color: gray;
+  }
+
+/* Bouton de creation du compte */
+.form-container .signup {
+	background-color: royalblue;
+  }
+
+/* Bouton quand on passe la souris dessus */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+} 
+
+/* Dimensionnement de la carte */
+#mapid { 
+	position: absolute; 
+	top: 3rem; 
+	bottom: 3rem;
+	left: 0px;
+	right: 0px;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+	/*display: none;*/
+}
+
+/*  */
+#footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	color: white;
+	text-align: center;
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+    	<title>PGL</title>
+    	<meta charset="utf-8"/>
+    	<link rel="stylesheet" href="assets/css/main.css" />
+    	<!-- Importation de Leaflet-->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+	</head>
+	<body>
+		<!-- Barre de navigation -->
+		<header>
+			<div id="navbar">
+				<a><button class="open-button" id="nav" onclick="openFormHome()">Home</button></a>
+				<a><button class="open-button" id="nav" onclick="openFormContact()">Contact</button></a>
+				<a><button class="open-button" id="nav" onclick="openFormTramway()">Tramway</button></a>
+				<a><button class="open-button" id="nav" onclick="openFormBus()">Bus</button></a>
+				<a style="float:right" class="active"><button class="open-button" id="log" onclick="openFormLogin()">Connexion</button></a>
+			</div>
+		</header>
+		<!-- Menu  -->
+		<div id="home">
+			<div class="content">
+				<h1><br>Mon compte</h1>
+				<h2>Bienvenue dans votre espace personnel</h2>
+			</div>
+		</div>
+		<!-- Formulaire de contact -->
+		<div class="form-popup-contact" id="contact">
+			<form action="assets/bdd/action_contact.php" name="contact" class="form-container" method="post">
+				<h1>Formulaire</h1>
+
+				<label for="sujet"><b>Sujet</b></label>
+				<input type="text" placeholder="Sujet" name="sujet" minlength="3" maxlength="50" pattern="[A-Za-z0-9À-ÿ]{3,50}">
+
+				<label for="email"><b>Email</b></label>
+				<input type="text" placeholder="Email" name="email" id="emailContact" maxlength="30" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+				<label for="message"><b>Message</b></label>
+				<textarea type="textarea" placeholder="Message" name="message" id="message" minlength="6" maxlength="500" pattern="[A-Za-z0-9.À-ÿ_-',]{6,500}"></textarea>
+
+				<button  type="submit" class="btn" id="btnSend">Send</button>
+				<button type="button" class="btn cancel" onclick="closeFormContact()">Close</button>
+			</form>
+		</div> 
+		<!-- Formulaire de login -->
+		<div class="form-popup-login" id="login">
+			<form action="assets/bdd/action_login.php" name="login" class="form-container" method="post">
+				<h1>Connexion</h1>
+
+				<label for="email"><b>Email</b></label>
+				<input type="text" placeholder="Email" name="email" id="emailLogin" maxlength="50" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+				<label for="psw"><b>Mot de passe</b></label>
+				<input type="password" placeholder="Mot de passe" name="psw" id="pswLogin" minlength="4" maxlength="20" pattern="[A-Za-zÀ-ÿ0-9._!?+-]{2,20}">
+
+				<button type="button" class="btn" id="btnSend" onclick="log()">Login</button>
+				<button type="button" class="btn signup" onclick="openFormSignUp()">Créer un compte</button>
+				<button type="button" class="btn cancel" onclick="closeFormLogin()">Close</button>
+			</form>
+		</div> 
+		<!-- Formulaire d'enregistrement de l'utilisateur "page 0"-->
+		<div class="form-popup-signup" id="signup-p1">
+			<form action="assets/bdd/action_signup.php" name="signup-p1" class="form-container" method="post">
+				<h1>Création du compte</h1>
+
+				<label for="email"><b>Email :</b></label>
+				<input type="text" placeholder="Email" name="email" id="emailSignUp" maxlength="50" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+				<label for="psw"><b>Mot de passe :</b></label>
+				<input type="password" placeholder="Mot de passe" name="psw" id="pswSignUp" minlength="4" maxlength="20" pattern="[A-Za-zÀ-ÿ0-9._!?+-]{2,20}">
+
+				<button type="button" class="btn signup" onclick="openSignUpPage1()">Suivant &#8594;</button>
+				<button type="button" class="btn cancel" onclick="closeFormSignUp()">Close</button>
+				<button type="button" class="btn return" onclick="openSignUpPage0()">&#8592; Retour</button>
+			</form>
+		</div>
+		<!-- Formulaire d'enregistrement de l'utilisateur "page 1"-->
+		<div class="form-popup-signup" id="signup-p2">
+			<form action="assets/bdd/action_signup.php" name="signup-p2" class="form-container" method="post">
+				<h1>Création du compte</h1>
+
+				<label for="nom"><b>Nom :</b></label>
+				<input type="text" placeholder="Nom" name="nom" id="nom" minlength="2" maxlength="36" pattern="[A-Za-zÀ-ÿ]{2,36}">
+
+				<label for="prenom"><b>Prenom :</b></label>
+				<input type="text" placeholder="Prenom" name="prenon" id="prenom" minlength="2" maxlength="36" pattern="[A-Za-zÀ-ÿ]{2,36}">
+
+				<label for="prenom"><b>Date de naissance :</b></label>
+				<input type="date" placeholder="jj/mm/aaaa" name="date" id="date">
+
+				<button type="button" class="btn signup" onclick="openSignUpPage2()">Suivant &#8594;</button>
+				<button type="button" class="btn cancel" onclick="closeFormSignUp()">Close</button>
+				<button type="button" class="btn return" onclick="openFormSignUp()">&#8592; Retour</button>
+			</form>
+		</div>
+		<!-- Formulaire d'enregistrement de l'utilisateur "page 2"-->
+		<div class="form-popup-signup" id="signup-p3">
+			<form action="assets/bdd/action_signup.php" name="signup-p3" class="container" method="post">
+				<h1>Création du compte</h1>
+
+				<b>Sexe :<br><br></b>
+				<input type="checkbox" class="checkbox1" value="Homme" name="sexe[1][]"/>
+				<label>Homme</label><br><br>
+				<input type="checkbox" class="checkbox1" value="Femme" name="sexe[1][]"/>
+				<label>Femme</label><br><br>
+				<input type="checkbox" class="checkbox1" value="Non précisé" name="sexe[1][]"/>
+				<label>Non précisé</label><br><br>
+				<input type="checkbox"  class="checkbox1" value="Autre" name="sexe[1][]"/>
+				<label>Autre</label><br><br>
+				<div class="form-container size">
+					<button type="button" class="btn signup" onclick="openSignUpPage3()">Suivant &#8594;</button>
+					<button type="button" class="btn cancel" onclick="closeFormSignUp()">Close</button>
+					<button type="button" class="btn return" onclick="openSignUpPage1()">&#8592; Retour</button>
+				</div>
+			</form>
+		</div>
+		<!-- Formulaire d'enregistrement de l'utilisateur "page 3"-->
+		<div class="form-popup-signup" id="signup-p4">
+			<form action="assets/bdd/action_signup.php" name="signup-p4" class="container" method="post">
+				<h1>Création du compte</h1>
+				<div>
+					<b>habitudes de déplacement :<br><br></b>		
+					<input type="checkbox" class="checkbox2" value="A pieds" name="habitudes[1][]" />
+					<label>A pieds</label><br><br>
+					<input type="checkbox" class="checkbox2" value="En voiture" name="habitudes[1][]" />
+					<label>En voiture</label><br><br>
+					<input type="checkbox" class="checkbox2" value="En vélo" name="habitudes[1][]" />
+					<label>En vélo</label><br><br>
+					<input type="checkbox" class="checkbox2" value="Transports" name="habitudes[1][]" />
+					<label>Transports</label><br><br>
+				</div>
+				<div class="form-container size">
+					<button type="button" class="btn signup" onclick="openSignUpPage4()">Suivant &#8594;</button>
+					<button type="button" class="btn cancel" onclick="closeFormSignUp()">Close</button>
+					<button type="button" class="btn return" onclick="openSignUpPage2()">&#8592; Retour</button>
+				</div>
+			</form>
+		</div>
+		<!-- Formulaire d'enregistrement de l'utilisateur "page 4"-->
+		<div class="form-popup-signup" id="signup-p5">
+			<form action="assets/bdd/action_signup.php" name="signup-p5" class="container" method="post">
+				<h1>Création du compte</h1>
+				<div class="checkbox">
+					<b>Fréquence d’utilisation des transports en commun :<br><br></b>		
+					<input type="checkbox" class="checkbox3" value="Quotidien" name="utilisation[1][]" />
+					<label>Quotidien</label><br><br>
+					<input type="checkbox" class="checkbox3" value="hebdomadaire" name="utilisation[1][]" />
+					<label>hebdomadaire</label><br><br>
+					<input type="checkbox" class="checkbox3" value="Mensuel" name="utilisation[1][]" />
+					<label>Mensuel</label><br><br>
+					<input type="checkbox" class="checkbox3" value="Episodique" name="utilisation[1][]" />
+					<label>Episodique</label><br><br>
+					<input type="checkbox" class="checkbox3" value="Jamais" name="utilisation[1][]" />
+					<label>Jamais</label><br><br>
+				</div>
+				<div class="form-container size">
+					<button type="button" class="btn signup" onclick="openSignUpPage5()">Suivant &#8594;</button>
+					<button type="button" class="btn cancel" onclick="closeFormSignUp()">Close</button>
+					<button type="button" class="btn return" onclick="openSignUpPage3()">&#8592; Retour</button>
+				</div>
+			</form>
+		</div>
+		<!-- Formulaire d'enregistrement de l'utilisateur "page 5"-->
+		<div class="form-popup-signup form-container" id="signup-p6">
+				<h1>Création du compte</h1>
+
+				<b>Récapitulatif<br><br></b>
+				<a>Adresse email : </a><a id="champ1">&#8709;</a><br>
+				<a>Mot de passe : </a><a id="champ2">&#8709;</a><br><br>
+
+				<a>Nom : </a><a id="champ3">&#8709;</a><br>
+				<a>Prenom : </a><a id="champ4">&#8709;</a><br>
+				<a>Date de naissance : </a><a id="champ5">&#8709;</a><br><br>
+
+				<a>Sexe : </a><a id="champ6">&#8709;</a><br><br>
+				<a>habitudes de déplacement : </a><a id="champ7">&#8709;</a><br><br>
+				<a>Fréquence d’utilisation des transports en commun : </a><a id="champ8">&#8709;</a><br>
+			
+			<form action="assets/bdd/action_signup.php" class="form-container" method="post"></form>
+				<button type="button" class="btn" id="btnSignUp" onclick="openSignUpPage6()">Confirmer</button>
+				<button type="button" class="btn cancel" onclick="closeFormSignUp()">Close</button>
+				<button type="button" class="btn return" onclick="openSignUpPage4()">&#8592; Retour</button>
+			</form>
+		</div>
+		<!-- Carte -->
+		<div id="mapid"></div>
+		<!-- Footer -->
+		<div id="footer">
+			<!-- Copyright -->
+			<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> &mdash; EQUIPE 5 | All rights reserved</p>
+		</div>
+		<!-- Script -->
+		<!-- Carte Link -->
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+		<!-- Script AJAX - BDD Link -->
+		<script src="assets/js/jquery.min.js"></script>
+		<!-- .JS"MAIN" Link -->
+		<script src="assets/js/main.js"></script>
+		<!-- .JS"LOGIN" Link -->
+		<script src="assets/js/cookie.js"></script>
+		<!-- .JS"FORMULAIRE" Link -->
+		<script src="assets/js/formulaire.js"></script>
+		<!-- .JS"INSCRIPTION" Link -->
+		<script src="assets/js/signup.js"></script>
+
+		<script>
+			//start jquery..
+			$( document ).ready(function(){
+			//get the the click of the button
+				$("#nav, #log").click(function(){
+				//disabled class toggle
+				$(".open-button").prop('disabled', true);
+				//enabled after 1 minute
+				setTimeout( function(){ 
+					//here you enabled all the html of class toggle.
+					$(".open-button").prop('disabled', false);
+				}
+				, 1000 );
+				});
+			});
+		</script>
+	</body>
+</html>
