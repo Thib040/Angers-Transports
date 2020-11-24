@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-    	<title>PGL</title>
-    	<meta charset="utf-8"/>
-    	<link rel="stylesheet" href="assets/css/main.css" />
-    	<!-- Importation de Leaflet-->
+		<title>PGL</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- Importation de Leaflet-->
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 	</head>
 	<body>
@@ -27,7 +27,7 @@
 		</div>
 		<!-- Formulaire de contact -->
 		<div class="form-popup-contact" id="contact">
-			<form action="assets/bdd/action_contact.php" name="contact" class="form-container" method="post">
+			<form action="" name="contact" class="form-container" method="post">
 				<h1>Formulaire</h1>
 
 				<label for="sujet"><b>Sujet</b></label>
@@ -45,7 +45,7 @@
 		</div> 
 		<!-- Formulaire de login -->
 		<div class="form-popup-login" id="login">
-			<form action="assets/bdd/action_login.php" name="login" class="form-container" method="post">
+			<form action="" name="login" class="form-container" method="post">
 				<h1>Connexion</h1>
 
 				<label for="email"><b>Email</b></label>
@@ -61,7 +61,7 @@
 		</div> 
 		<!-- Formulaire d'enregistrement de l'utilisateur "page 0"-->
 		<div class="form-popup-signup" id="signup-p1">
-			<form action="assets/bdd/action_signup.php" name="signup-p1" class="form-container" method="post">
+			<form action="" name="signup-p1" class="form-container" method="post">
 				<h1>Création du compte</h1>
 
 				<label for="email"><b>Email :</b></label>
@@ -77,7 +77,7 @@
 		</div>
 		<!-- Formulaire d'enregistrement de l'utilisateur "page 1"-->
 		<div class="form-popup-signup" id="signup-p2">
-			<form action="assets/bdd/action_signup.php" name="signup-p2" class="form-container" method="post">
+			<form action="" name="signup-p2" class="form-container" method="post">
 				<h1>Création du compte</h1>
 
 				<label for="nom"><b>Nom :</b></label>
@@ -96,7 +96,7 @@
 		</div>
 		<!-- Formulaire d'enregistrement de l'utilisateur "page 2"-->
 		<div class="form-popup-signup" id="signup-p3">
-			<form action="assets/bdd/action_signup.php" name="signup-p3" class="container" method="post">
+			<form action="" name="signup-p3" class="container" method="post">
 				<h1>Création du compte</h1>
 
 				<b>Sexe :<br><br></b>
@@ -117,7 +117,7 @@
 		</div>
 		<!-- Formulaire d'enregistrement de l'utilisateur "page 3"-->
 		<div class="form-popup-signup" id="signup-p4">
-			<form action="assets/bdd/action_signup.php" name="signup-p4" class="container" method="post">
+			<form action="" name="signup-p4" class="container" method="post">
 				<h1>Création du compte</h1>
 				<div>
 					<b>habitudes de déplacement :<br><br></b>		
@@ -139,7 +139,7 @@
 		</div>
 		<!-- Formulaire d'enregistrement de l'utilisateur "page 4"-->
 		<div class="form-popup-signup" id="signup-p5">
-			<form action="assets/bdd/action_signup.php" name="signup-p5" class="container" method="post">
+			<form action="" name="signup-p5" class="container" method="post">
 				<h1>Création du compte</h1>
 				<div class="checkbox">
 					<b>Fréquence d’utilisation des transports en commun :<br><br></b>		
@@ -203,17 +203,18 @@
 		<script src="assets/js/formulaire.js"></script>
 		<!-- .JS"INSCRIPTION" Link -->
 		<script src="assets/js/signup.js"></script>
-
+		<!-- .JS"TRAM" Link -->
+		<script src="assets/js/tram.js"></script>
+		<!-- .JS"ARRETS" Link -->
+		<script src="assets/js/arretTram.js"></script>
+		<!-- .JS"BUS" Link -->
+		<script src="assets/js/bus.js"></script>
 		<script>
-			//start jquery..
+			// Fonction anti-spam des boutons
 			$( document ).ready(function(){
-			//get the the click of the button
 				$("#nav, #log").click(function(){
-				//disabled class toggle
 				$(".open-button").prop('disabled', true);
-				//enabled after 1 minute
 				setTimeout( function(){ 
-					//here you enabled all the html of class toggle.
 					$(".open-button").prop('disabled', false);
 				}
 				, 1000 );

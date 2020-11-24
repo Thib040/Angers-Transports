@@ -1,13 +1,20 @@
 // Fonction qui run son contenu au chargement de la page
+let map = L.map('mapid', {center: [47.493245, -0.551346], zoom: 14});
+let tramMap = new Map();
+let busMap = new Map();
+let arretMapArd = new Map();
+let arretMapRos = new Map();
+
 window.onload = function ()
 {
-    initMap();
+	initMap();
 }
+
+
 
 // Initialisation de la carte
 function initMap() {
 	// Coordonnées de Angers
-	const map = L.map('mapid', {center: [47.4937187, -0.5504861], zoom: 15});
 	// Définition du fond de carte
 	L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png').addTo(map);
 
@@ -22,6 +29,7 @@ function initMap() {
 	baselayers.osm.addTo(map);
 	// Ajout des boutons radios à la carte
 	L.control.layers(baselayers).addTo(map);
+
 }
 
 // Reinitialise la carte (fonction de debug)
@@ -102,7 +110,7 @@ function openFormContact() {
 		closeFormContact();
 	}
 }
-  
+
 function closeFormContact() {
 	document.getElementById("mapid").style.left = "0px";
 	formContact = false;
@@ -133,7 +141,7 @@ function openFormLogin() {
 		closeFormLogin();
 	}
 }
-  
+
 function closeFormLogin() {
 	document.getElementById("mapid").style.right = "0px";
 	document.getElementById("signup-p1").style.right = "-325px";
@@ -141,7 +149,7 @@ function closeFormLogin() {
 	document.getElementById("signup-p3").style.right = "-325px";
 	document.getElementById("signup-p4").style.right = "-325px";
 	document.getElementById("signup-p5").style.right = "-325px";
-    document.getElementById("signup-p6").style.right = "-325px";
+	document.getElementById("signup-p6").style.right = "-325px";
 	setTimeout(function(){
 		document.getElementById("login").style.display = "none";
 	},900);
@@ -151,41 +159,67 @@ function closeFormLogin() {
 // Tramway
 function openFormTramway() {
 	if (formTramway == false) {
-		// Afficher le tram
 		formTramway = true;
 		formBus = false;
+		for (i = 1; i < 40; i++ ) {
+			map.removeLayer(Bus[i]);
+		}
+		loadTram();
+		loadArretRoseraie();
+        loadArretArdenne() ;
+		setInterval(function () {
+			map.removeLayer(TramROS);
+			map.removeLayer(TramARD);
+			loadTram();
+		}, 30000);
 		resetMap();
 	}
 	else {
 		formTramway = false;
-		closeFormTramway();
+		map.removeLayer(TramArret);
+        map.removeLayer(TramArret2);
+		map.removeLayer(TramROS);
+		map.removeLayer(TramARD);
+		resetMap();
 	}
 }
   
 function closeFormTramway() {
 	// Masquer le tram
 	formTramway = false;
-	resetMap();
 }
 
 // Bus
 function openFormBus() {
 	if (formBus == false) {
-		// Afficher le bus
 		formBus = true;
 		formTramway = false;
-		initMap();
+		map.removeLayer(TramArret);
+        map.removeLayer(TramArret2);
+		map.removeLayer(TramROS);
+		map.removeLayer(TramARD);
+		loadBus();
+		setInterval(function () {
+			for (i = 1; i < 40; i++ ) {
+				map.removeLayer(Bus[i]);
+			}
+
+			loadBus();
+		}, 30000);
+		resetMap();
 	}
 	else {
 		formBus = false;
-		closeFormBus();
+		for (i = 1; i < 40; i++ ) {
+			map.removeLayer(Bus[i]);
+		}
+		resetMap();
 	}
 }
   
 function closeFormBus() {
 	// Masquer le bus
 	formBus = false;
-	resetMap();
 }
 
 // Formulaire d'enregistrement du nouvel utilisateur
@@ -194,7 +228,7 @@ function openFormSignUp() {
 	document.getElementById("signup-p2").style.right = "-325px";
 	resetMap();
 }
-  
+
 function closeFormSignUp() {
 	document.getElementById("signup-p1").style.right = "-325px";
 	document.getElementById("signup-p2").style.right = "-325px";
